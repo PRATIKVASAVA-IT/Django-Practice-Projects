@@ -1,0 +1,26 @@
+{% extends 'layout1.html'%}
+{% block prv %}
+  
+<div class="col-sm-7 bg-dark-subtle offset-1 " style="height: 40px; " > 
+ <h2> User Update form </h2>
+</div>
+<div class="mt-8 text-center" >
+    
+    <form action="" method="Post" >
+    
+    {% csrf_token %}
+        {% for form in form1%}
+        {{form.label}} <br>
+        {{form}} <br> 
+        {% endfor %}
+        <input type="submit" value="Add" class=" mt-2 bg-success">
+    
+    </form>
+    {% if msg %}
+    
+    <span class="bg-success"> {{msg}} </span>
+    
+    {% endif %}
+    </div>
+</div>    
+{% endblock %}

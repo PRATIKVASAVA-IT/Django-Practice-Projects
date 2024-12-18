@@ -1,0 +1,44 @@
+{% extends 'layout1.html'%}
+
+{% block prv %}
+
+<h2 class="btn btn-sucess"> <a href="{% url 'Create_post' %}">Create Post</a></h2>
+
+
+<div style="display: flex; flex-wrap: wrap;">
+    
+{% for post in query%}
+        
+    
+    <div class="card" style="width:8rem; ">
+        
+        <img src="{{post.photo.url}}" class="card-img-top" alt="Post Image">
+        <div class="card-body">
+        
+            <h5 class="card-title">{{post.title}}</h5>
+            <p class="card-text">{{post.details}}</p>
+            <a href="#" class="btn btn-primary">Read More..</a>
+            
+            {% if post.user == user %}
+            <a href="{% url 'edit_post' post.id %}"  class="btn btn-secondary">Edit</a>
+            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+            
+            {% endif %}
+
+            <span>POSTED By : {{post.user}}</span>
+        </div>
+       
+    </div>
+    {% endfor %}
+   
+</div>   
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+{% endblock %}

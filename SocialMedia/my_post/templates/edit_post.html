@@ -1,0 +1,18 @@
+{% extends 'layout1.html'%}
+{% block prv %}
+
+<form  class="form" enctype="multipart/form-data" method="post">
+
+    {%csrf_token%}
+    
+    {{form}}
+
+
+<button class="btn btn-success">Edit</button>
+
+
+</form>
+
+
+
+{% endblock %}

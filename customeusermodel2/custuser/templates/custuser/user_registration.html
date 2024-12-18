@@ -1,0 +1,11 @@
+
+<div class="bg bg-success mt-2"> USER REGISTRATION FORM</div>
+<form action="" method="post" class="mt-2 ms-3"  style="align-self: center; align-items:center;"  novalidate>    
+    {% csrf_token %}
+    {% for fm in form %}
+         {{fm.label_tag}}{{fm}} {{ fm.errors|striptags }}  <br><br>
+        {% endfor %}
+    <input type="submit" value="DONE">
+</form>
+
+

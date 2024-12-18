@@ -1,0 +1,14 @@
+{% extends 'myblog/base.html' %}
+{% block main %}
+
+<div class="bg bg-warning mt-2" style="text-align: center;color:white"> CREATE BLOG</div>
+<form action="" method="post" class="mt-2 ms-3"  style="align-self: center; align-items:center; color:white;" enctype="multipart/form-data">    
+    {% csrf_token %}
+    {% for fm in form %}
+         {{fm.label_tag}}{{fm}} {{ fm.errors|striptags }}  <br><br>
+        {% endfor %}
+    <input type="submit" value="DONE">
+</form>
+
+
+{% endblock %}

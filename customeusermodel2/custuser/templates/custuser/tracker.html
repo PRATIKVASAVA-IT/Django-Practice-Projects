@@ -1,0 +1,44 @@
+{% extends 'custuser/base.html'%}
+
+{% block prv %}
+
+<h1>Welcome to your Tracker</h1><h6>{{user}}</h6>
+
+<p>
+    <h3>Total Balance: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-currency-rupee inline" viewBox="0 0 16 16" style="margin: 0%;">
+        <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+      </svg> {{total}}</h3>
+    <h4>Expense: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-currency-rupee inline" viewBox="0 0 16 16" style="margin: 0%;">
+        <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+      </svg>{{expense}}</h4>
+    <h4>Credited:<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-currency-rupee inline" viewBox="0 0 16 16" style="margin: 0%;">
+        <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+      </svg>{{Creadited}}</h4>
+</p>
+
+  
+<div class="container">
+    <div class="header">History </div>
+    {% for i in object_list %}
+    {{i.comment }}  {{i.amount}}
+{% endfor %}
+</div>
+
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for fm in form %}
+        {{fm.label_tag}}{{fm}} {{ fm.errors|striptags }}  <br><br>
+       {% endfor %}
+   <input type="submit" value="DONE">
+</form>
+
+
+    
+</div>
+
+<form action="{% url 'logout' %}" method="post">
+     {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% endblock %}

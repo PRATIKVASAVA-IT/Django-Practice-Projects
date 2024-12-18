@@ -1,0 +1,169 @@
+{% extends 'custuser/base.html' %}
+{% block prv %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .tracker-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .tracker-body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+        .card-summary {
+            margin-bottom: 15px;
+        }
+        .history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .history-item:hover {
+            transform: scale(1.02);
+        }
+        .history-item.expense {
+            background-color: #ffe6e6;
+            border-left: 5px solid #e60000;
+        }
+        .history-item.credit {
+            background-color: #e6ffe6;
+            border-left: 5px solid #00cc00;
+        }
+        .history-item-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .action-icons {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .history-item:hover .action-icons {
+            opacity: 1;
+        }
+        .btn-small {
+            padding: 5px 15px;
+            font-size: 0.9em;
+        }
+        .text-muted-small {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        .form-container {
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h5 {
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        .form-control {
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus {
+            border-color: #0056b3;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="card shadow">
+        <div class="tracker-header">
+            <h2>Welcome to your Tracker</h2>
+            <p class="lead">{{ request.user }}</p>
+        </div>
+        <div class="tracker-body">
+            <!-- Summary Section -->
+            <div class="row text-center mb-4">
+                <div class="col-md-4 card-summary">
+                    <div class="card p-3 border-primary">
+                        <h5 class="text-primary">Total Balance</h5>
+                        <p class="h4 font-weight-bold text-primary">₹{{ total }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 card-summary">
+                    <div class="card p-3 border-danger">
+                        <h5 class="text-danger">Expense</h5>
+                        <p class="h4 font-weight-bold text-danger">₹{{ expense }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 card-summary">
+                    <div class="card p-3 border-success">
+                        <h5 class="text-success">Credited</h5>
+                        <p class="h4 font-weight-bold text-success">₹{{ Creadited }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comment and Amount Form -->
+            <div class="form-container">
+                <h5 class="font-weight-bold">Add a New Entry</h5>
+                <form method="post" style="margin-left: 25%; margin-right:25%;">
+                    {% csrf_token %}
+                    {% for fm in form %}
+                        <div class="form-group">
+                            {{ fm.label_tag }}
+                            <input type="{{ fm.field.widget.type }}" name="{{ fm.name }}" value="{{ fm.value|default_if_none:'' }}" class="form-control {% if fm.errors %}is-invalid{% endif %}">
+                            {{ fm.errors|striptags }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary btn-small">DONE</button>
+                </form>
+            </div>
+
+            <!-- History Section -->
+            <h4 class="font-weight-bold mb-3">History</h4>
+            <div class="history-list">
+                {% for i in object_list|dictsortreversed:"created_at" %}
+                <div class="history-item {% if i.amount > 0 %}credit{% else %}expense{% endif %}">
+                    <div class="history-item-details">
+                        <span>{{ i.comment }}: ₹{{ i.amount }}</span>
+                        <small class="text-muted-small">{{ i.created_at|date:"Y-m-d H:i" }}</small>
+                    </div>
+                    <span class="action-icons">
+                        <i class="fas fa-edit text-primary mx-2" title="Edit"></i>
+                        <i class="fas fa-trash text-danger" title="Delete"></i>
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Logout Button -->
+            <div class="text-center mt-4">
+                <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

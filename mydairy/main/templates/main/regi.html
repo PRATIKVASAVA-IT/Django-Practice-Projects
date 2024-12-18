@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f7f9fc, #eaf5e8);
+}
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+header nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+.login-panel {
+    background: #fff;
+    color: #333;
+    padding: 7px;
+    margin: 20px auto 20px auto;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.login-panel h2 {
+    text-align: center;
+    margin-bottom: 2px;
+}
+.login-panel form {
+    display: flex;
+    flex-direction: column;
+}
+.login-panel input[type="text"],
+.login-panel input[type="password"] {
+    padding: 7px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.login-panel button {
+    padding: 5px;
+    background: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+.login-panel button:hover {
+    background: #45a049;
+}
+</style>
+<body>
+
+    <header>
+        <div class="logo">DairyFresh</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+
+
+    {% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-{{msg.tags}}" style="margin-top: 10px;">
+            {{ msg }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    
+    <section class="login-panel">
+        <form action="" method="post" style="margin:5px 5px 20px 20px;" novalidate>
+            {% csrf_token %}
+            <h2>User Registration</h2>
+    
+            {% for field in fm %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="text-danger">
+                    {{ field.errors|striptags }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+    
+            <input class="btn btn-success" type="submit" value="Registration">
+        </form>
+    </section>
+    
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'VG/base.html'%}
+{% block prv %}
+
+<div class="container card">
+    
+    {%for i in data%}
+    <div class="news-card">
+        
+        <img src="{{i.img}}" alt="News Image" class="news-image">
+        <div class="news-content">
+            <h2 class="news-title">{{i.title}}</h2>
+            <p class="news-description">{{i.desc | title | truncatewords:30}}</p>
+            <div class="news-meta">
+                <span class="news-author">{{i.author_name}}</span>
+                <span class="news-date">{{i.date}}</span>
+            </div>
+        </div>
+    </div>
+    
+        
+{% endfor %}
+
+</div>
+<div class="lower ">
+    <div classs="Rigt"></div>
+    <div classs="left"></div>
+    
+    </div>
+    
+    
+{% endblock %}

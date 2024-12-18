@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form Calculation</title>
+</head>
+<body>
+    <form>
+        <label for="input1">Input 1:</label>
+        <input type="number" id="input1" placeholder="Enter first value" step="any">
+
+        <label for="input2">Input 2:</label>
+        <input type="number" id="input2" placeholder="Enter second value" step="any">
+
+        <label for="input3">Input 3:</label>
+        <input type="number" id="input3" placeholder="Enter third value" step="any">
+
+        <label for="amount">Calculated Amount:</label>
+        <input type="number" id="amount" placeholder="Result" readonly>
+    </form>
+
+    <script>
+        // Attach event listeners to all three input fields
+        const inputs = ['id_weigth', 'id_fate', 'id_price'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', handleInputs);
+        });
+
+        // Function to handle the inputs and update the amount
+        function handleInputs() {
+            // Get the values of all three inputs
+            const value1 = parseFloat(document.getElementById('id_weigth').value) || 0;
+            const value2 = parseFloat(document.getElementById('id_fate').value) || 0;
+            const value3 = parseFloat(document.getElementById('id_price').value) || 0;
+
+            // Only calculate after the third input is filled
+            if (document.getElementById('id_price').value) {
+                // Perform the calculation
+                const result = calculateAmount(value1, value2, value3);
+
+                // Populate the amount field with the result
+                document.getElementById('amount').value = result.toFixed(2);
+            }
+        }
+
+        // Function to calculate the result based on input values
+        function calculateAmount(a, b, c) {
+            // Example calculation: a * b + c
+            return (a * b) + c;
+        }
+    </script>
+</body>
+</html>

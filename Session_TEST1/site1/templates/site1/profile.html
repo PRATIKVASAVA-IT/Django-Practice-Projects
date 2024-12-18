@@ -1,0 +1,23 @@
+{% extends 'site1/base.html'%}
+
+{% block content %}
+<main class="d-flex justify-content-center align-items-center vh-100">
+    <div class="image-container">
+        <!-- Main Image -->
+        <img src="/static/D1.jpg" alt="Main Image" class="img-fluid">
+ 
+        <!-- Form Overlay -->
+    
+        {% if messages %}
+                {% for mes in messages %}
+                    <div class="alert alert-info">{{ mes }}</div>
+                {% endfor %}
+            {% endif %}
+       
+    </div>
+</main>
+
+<p> Welcome , {{request.user}}</p>
+    <a href="{% url 'logout'%}">Logout</a>
+
+{% endblock%}

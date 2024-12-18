@@ -1,0 +1,57 @@
+{% extends 'myblog/base.html'%}
+{% block main %}
+
+{% for i in messages%}
+{{ i }}
+{%endfor%}
+
+
+{{messages}}
+
+  <a href="{% url 'apidata'%}" class="btn btn-success">Get</a>
+    <div class="container mt-2" style="background-color: rgb(25, 26, 25);"  >  
+        
+    <div class=" row mt-3 ">
+        {% for post in object %}
+    
+        <div class="col-md-4 mb-4">
+
+        
+            <div class="card mt-2" >
+                
+                <img src="{{post.img.url}}" class="card-img-top" alt="Blog 1" height="70px" width="75px">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title |slice:":25"}}</h5>
+                    <p class="card-text">{{post.description|slice:":25"}}</p>
+                </div>
+                {% if post.user == user %}
+                <div class="card-footer">
+                    <a href="{% url 'updateView' post.id %}" style="color: green;"><i class="fas fa-edit fa-sm"></i></a>
+                    <a href="{% url 'DeleteView' post.id %}" style="color: red;"><i class="fas fa-trash-alt fa-sm" > </i></a>
+                    <!---<a href="#" class="btn btn-primary btn-sm">Read More</a>-->
+                    <a href="{% url 'PostView' post.id %}" style="color: blueviolet;"><i class="fas fa-external-link-alt fa-sm"></i> Read More</a>
+                </div>
+                {% else %}
+
+                <div class="card-footer">
+                    <a href="{% url 'PostView' post.id %}" style="color: blueviolet;"><i class=""></i> Read More</a>
+                </div>
+               
+
+                {% endif %}
+                <div class="card-footer text-muted">
+                    <span style="font-size: xx-small;">Written by: {{ post.user.username }}</span> |
+                    <span style="font-size: xx-small;">Date: {{ post.date }}</span>
+                </div>
+               
+        
+            </div>
+            
+        </div>
+    
+        {% endfor %}
+   
+<!--End CARD-->
+
+
+{% endblock %}

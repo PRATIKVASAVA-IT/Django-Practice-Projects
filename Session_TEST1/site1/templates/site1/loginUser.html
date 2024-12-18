@@ -1,0 +1,46 @@
+{% extends 'site1/base.html'%}
+
+{% block content %}
+<h4>CHECK! </h4>
+<main class="d-flex justify-content-center align-items-center vh-100">
+    <div class="image-container">
+        <!-- Main Image -->
+        <img src="/static/D1.jpg" alt="Main Image" class="img-fluid">
+ 
+        <!-- Form Overlay -->
+        <form action="" method="post" class="form-overlay" novalidate>
+            
+            {% csrf_token %}
+            {% if messages %}
+                {% for mes in messages %}
+                    <div class="alert alert-info">{{ mes }}</div>
+                {% endfor %}
+            {% endif %}
+            <table class="form-table ">
+                <thead class="text-danger">LOGIN</thead><br><br>
+                {% for fm in fm %}
+                <tr></tr>
+                <tr>
+                    <td>{{ fm.label_tag }}</td>
+                    <td>
+                        {{ fm }}<br>
+                        <div class="text-danger">{{ fm.errors|striptags }}</div>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+
+            <div class="d-flex gap-2 mt-3 ms-4">
+                <input type="submit" value="Login" class="btn btn-success">
+                <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+                
+            </div>
+        </form>
+        
+        
+       
+    </div>
+</main>
+
+{% endblock%}

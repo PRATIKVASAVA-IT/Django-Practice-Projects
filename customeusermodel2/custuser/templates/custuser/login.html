@@ -1,0 +1,13 @@
+{% extends 'custuser/base.html' %}
+{% block prv %}
+<div class="container" style="align-self: center;">
+<div class="bg bg-success mt-2"> LogIN FORM</div>
+<form action="" method="post" class="mt-2 ms-3"  style= align-items:center;"  novalidate>    
+    {% csrf_token %}
+    {% for fm in form %}
+         {{fm.label_tag}}{{fm}} {{ fm.errors|striptags }}  <br><br>
+        {% endfor %}
+    <input type="submit" value="DONE">
+</form>
+</div>
+  {% endblock %}

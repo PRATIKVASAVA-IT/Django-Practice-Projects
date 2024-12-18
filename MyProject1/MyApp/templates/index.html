@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="header" style="margin: 5px 5px 5px 10px;">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">AboutUs</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a> </li>
+        
+    </ul>
+
+</div>
+<div class="body">
+    <h1 style="margin-top: 12px" >Color Separation function on Go..!</h1>
+<div class="container">
+
+<button class="mybtn" id="btn_red" name="btn_red" button:hoover="red">Red</button>
+<button class="mybtn" id="btn_green" name="btn_green" >Green</button>
+<button class="mybtn" id="btn_blue" name="btn_blue">Blue</button>
+<button class="mybtn" id="btn_yellow" name="btn_yellow">Yellow</button>
+<button class="mybtn" id="btn_pink" name="btn_pink">Pink</button>
+
+</div>
+
+    
+</body>
+<style>
+
+
+
+.header
+{
+    display: flex;
+    height: 53px;
+    background-color: brown;
+    font-stretch: wider;
+    box-shadow:4px 4px 9px sandybrown;
+    
+    
+}
+
+.header ul
+{
+    display:flex;
+    gap:22px;
+    color: beige;
+    font-size:medium;
+    fill-opacity: 70%;
+    border-radius: 3px
+    
+
+
+}
+.header ul li
+{
+    display: flex;
+    
+
+}
+.header ul li  a:hover {
+    background-color: sandybrown;
+    box-shadow: 7px 4px 8px rgba(0, 0, 0, 0.2);
+    color: azure;
+    
+    
+}
+
+.header a
+{
+
+    display: block;
+    
+    text-decoration: none; /* Remove underline */
+    color: white; /* Default text color */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    justify-self: center;
+}
+h1
+{
+    margin-left: 12px;
+    background-color: blue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-stretch: wider;
+    color: bisque;
+    box-shadow:4px 5px 10px blueviolet;
+    display: grid;
+    
+    
+    
+}
+
+.container{
+display: flex;
+
+justify-content: center;
+justify-self: center;
+gap: 8px;
+
+}
+
+.mybtn
+{
+    
+    size: 13vw;
+    box-shadow: 5px black;
+    width: 6%;
+    border-radius: 5cm;
+}
+
+.container button:hover
+{
+    
+    background-color:rgb(100,200,250);
+    
+}
+
+
+
+</style>
+<script>
+
+    const fetch_color=(color)=>
+    {
+
+
+    }
+    const remover_btn=(btn)=>{
+        let z=btn
+        let l=z.length;
+        
+        let i=z.slice(4,l)
+        return i
+    }
+
+
+    remover_btn('btn_prv')
+
+Array.from(document.getElementsByClassName('mybtn')).forEach(r=>{
+
+    
+    
+    
+    
+
+
+    r.addEventListener('click',()=>{
+
+
+    let u=remover_btn(r.name)
+    console.log(u)
+    
+    document.body.style.backgroundColor =u;
+    
+
+    })
+
+        
+    
+})
+
+/*
+    document.getElementById('btn_blue').addEventListener('click',e=>{
+
+    let u=remover_btn(e.target.name)
+    console.log(u)
+        document.body.style.backgroundColor =u
+        
+    })
+*/
+</script>
+</html>

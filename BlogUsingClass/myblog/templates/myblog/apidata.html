@@ -1,0 +1,26 @@
+{% extends 'myblog/base.html'%}
+{% block main %}
+{% for i in data %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sn</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Email</th>
+        <th scope="col">Roll</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.city}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.roll}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+{% endfor %}
+{% endblock %}

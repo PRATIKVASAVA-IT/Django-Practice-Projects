@@ -1,0 +1,38 @@
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+
+
+
+<div class="bg bg-success mt-2" style="text-align: center;color:rgb(17, 226, 111)">Login </div>
+<form action="" method="post" class="mt-2 ms-3"  style="align-self: center; align-items:center;color:red;"  novalidate style="padding: 5px;">    
+    {% csrf_token %}
+    {% for fm in form %}
+         {{fm.label_tag}} {{fm}} {{ fm.errors|striptags }}  <br><br>
+        {% endfor %}
+    <p> <input type="submit"  value="Login" style="margin: 20px;"> </p> 
+</form>
+
+
+<h4> Welcome to the Index page..</h4>
+
+<div class="bg bg-success mt-2" style="text-align: center;color:rgb(181, 226, 17)">Client Login</div>
+<form action="" method="post" class="mt-2 ms-3"  style="align-self: center; align-items:center;color:rgb(133, 15, 201);"  novalidate style="padding: 5px;">    
+    {% csrf_token %}
+    {% for fm in form1 %}
+    
+         {{fm.label_tag}} {{fm}} {{ fm.errors|striptags }}  <br><br>
+        {% endfor %}
+    <div style="color:green">
+        {% for msg in messages %}
+        {{msg}}
+    {% endfor %}
+    </div>    
+       
+    <p> <input type="submit"  value="SAVE" style="margin: 20px;"> </p> 
+</form>
+
+
+{% endblock %}

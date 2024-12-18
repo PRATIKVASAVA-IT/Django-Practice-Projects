@@ -1,0 +1,20 @@
+{% extends 'layout1.html'%}
+{% block prv%}
+<h2>Create the New POST </h2>
+<form method="post"  enctype="multipart/form-data" class="form">
+{% csrf_token %}
+<div class="containder card">
+
+    {{form}}
+    
+
+
+   <button class="btn btn-primary">Submit</button>
+
+
+</div>
+</form>
+
+
+
+{% endblock%}
