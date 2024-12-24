@@ -154,34 +154,34 @@ function getPrice(w, f, p) {
     if (typeof w === 'number' && typeof f === 'number' && typeof p === 'number') {
         let a, s;
 
-        if (f > 0 && f <= 5 && w < 10) {
+        if (f > 0 && f <= 5.0 && w < 10.0) {
             console.log('condition 1');
             a = w * p;
-            s = (w * p) * 20 / 100;
+            s = (w * p) * 20.0 / 100.0;
             p = a - s;
             return p;
-        } else if (f > 0 && f <= 5 && w > 10) {
+        } else if (f > 0 && f <= 5.0 && w > 10.0) {
             console.log('condition 2');
             a = w * p;
-            s = (w * p) * 12 / 100;
+            s = (w * p) * 12.0 / 100.0;
             p = a - s;
             return p;
-        } else if (f > 5 && f <= 8 && w < 10) {
+        } else if (f > 5.0 && f <= 8.9 && w < 10.0) {
             console.log('condition 3');
             a = w * p;
-            s = (w * p) * 10 / 100;
+            s = (w * p) * 10.0 / 100.0;
             p = a - s;
             return p;
-        } else if (f > 5 && f <= 8 && w > 10) {
+        } else if (f > 5.0 && f <= 8.9 && w > 10.0) {
             console.log('condition 4');
             a = w * p;
-            s = (w * p) * 8 / 100;
+            s = (w * p) * 8.0 / 100.0;
             p = a - s;
             return p;
-        } else if (f === 9) {
+        } else if (f === 9.0) {
             console.log('condition 5');
             return p * w;
-        } else if (f >= 10) {
+        } else if (f >= 10.0) {
             console.log('condition 6');
             a = w * p;
             s = (w * p) * 0.1;
